@@ -31,8 +31,8 @@ spec:
     app.kubernetes.io/name: haproxy
   ports:
     - protocol: TCP
-      nodeport: 30080
+      nodeport: 31080
       targetPort: 80
     - protocol: TCP
-      nodeport: 30443
+      nodeport: 31443
       targetPort: 443
