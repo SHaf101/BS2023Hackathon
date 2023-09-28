@@ -68,15 +68,24 @@ data:
       daemon
     defaults
       log global
-      mode http
+      mode https
       option httplog
       option dontlognull
       timeout connect 5000
       timeout client 50000
       timeout server 50000
+    frontend stats
+      mode http
+      bind *:8080
+      stats enable
+      stats uri /stats
+      stats refresh 10s
+      stats admin if TRUE
     frontend moodle-https-fe
+      mode https
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
+      mode https
       #server svc-moodle-demo www.google.com
       server svc-moodle-demo haproxy-service.default.svc.cluster.local
