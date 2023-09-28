@@ -18,8 +18,8 @@ spec:
       - name: haproxy
         image: haproxy:lts
         ports:
-        - containerPort: 80
-        - containerPort: 443
+        - containerPort: 8080
+        - containerPort: 8443
         volumeMounts:
         - mountPath: /usr/local/etc/haproxy
           name: haproxycfg
@@ -41,13 +41,13 @@ spec:
     - name: http-ha
       protocol: TCP
       nodePort: 31080
-      port: 80
-      targetPort: 80
+      port: 8080
+      targetPort: 8080
     - name: https-ha
       protocol: TCP
       nodePort: 31443
-      port: 443
-      targetPort: 443
+      port: 8443
+      targetPort: 8443
 
 ---
 apiVersion: v1
@@ -75,7 +75,7 @@ data:
       timeout client 50000
       timeout server 50000
     frontend myfrontend
-      bind *:80
+      bind *:8080
       default_backend mybackend
     backend mybackend
       server server1 192.168.0.1:8080
