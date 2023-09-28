@@ -89,4 +89,4 @@ data:
     backend moodle-https-be
       mode http
       #server svc-moodle-demo www.google.com
-      server svc-moodle-demo haproxy-service.default.svc.cluster.local:443 check ssl verify none
+      server svc-moodle-demo haproxy-service.default.svc.cluster.local:30443 check ssl verify none
