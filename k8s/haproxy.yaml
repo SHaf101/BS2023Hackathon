@@ -30,7 +30,8 @@ spec:
   selector:
     app.kubernetes.io/name: haproxy
   ports:
-    - protocol: http-ha
+    - name: http-ha
+      protocol: TCP
       nodePort: 31080
       port: 80
       targetPort: 80
