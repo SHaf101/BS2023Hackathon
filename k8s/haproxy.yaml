@@ -60,7 +60,7 @@ data:
     global
       log /dev/log local0
       log /dev/log local1 notice
-      chroot /var/lib/haproxy
+      # chroot /var/lib/haproxy
       user haproxy
       group haproxy
       daemon
