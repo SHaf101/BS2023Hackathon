@@ -68,7 +68,7 @@ data:
       daemon
     defaults
       log global
-      mode https
+      mode http
       option httplog
       option dontlognull
       timeout connect 5000
