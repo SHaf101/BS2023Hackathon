@@ -17,6 +17,8 @@ spec:
       containers:
       - name: haproxy
         image: haproxy:lts
+        securityContext:
+          runAsUser: 0
         ports:
         - containerPort: 8080
         - containerPort: 8443
@@ -60,7 +62,7 @@ data:
     global
       log /dev/log local0
       log /dev/log local1 notice
-      # chroot /var/lib/haproxy
+      chroot /var/lib/haproxy
       user haproxy
       group haproxy
       daemon
@@ -76,4 +78,5 @@ data:
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
-      server svc-moodle-demo www.google.com
+      #server svc-moodle-demo www.google.com
+      server svc-moodle-demo haproxy-service.default.svc.cluster.local
