@@ -82,11 +82,11 @@ data:
       stats uri /haproxy_stats  # You can change this path if desired
       #stats auth username:<your_password> 
       stats admin if TRUE
-    frontend moodle-https-fe
+    frontend moodle-http-fe
       mode http
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
       mode http
       #server svc-moodle-demo www.google.com
-      server svc-moodle-demo haproxy-service.default.svc.cluster.local
+      server svc-moodle-demo haproxy-service.default.svc.cluster.local check ssl verify none
