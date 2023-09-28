@@ -72,14 +72,8 @@ data:
       timeout connect 5000
       timeout client 50000
       timeout server 50000
-    frontend myfrontend
-      bind *:8080
-      default_backend mybackend
-    backend mybackend
-      server server1 192.168.0.1:8080
-      server server2 192.168.0.2:8080
     frontend moodle-https-fe
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
-      server svc.moodle-demo moodle-demo.default.svc.cluster.local:443
+      server svc-moodle-demo moodle-demo.default.svc.cluster.local:30443
