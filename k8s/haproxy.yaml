@@ -82,10 +82,10 @@ data:
       stats refresh 10s
       stats admin if TRUE
     frontend moodle-https-fe
-      mode https
+      mode http
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
-      mode https
+      mode http
       #server svc-moodle-demo www.google.com
       server svc-moodle-demo haproxy-service.default.svc.cluster.local
