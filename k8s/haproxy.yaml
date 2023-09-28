@@ -25,7 +25,7 @@ spec:
           name: haproxy.cfg
       volumes:
       - name: haproxycfg
-        configmap:
+        configMap:
           name: haproxy-configmap
       
 ---
