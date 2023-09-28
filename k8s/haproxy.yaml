@@ -76,4 +76,4 @@ data:
       bind *:8443
       default_backend moodle-https-be
     backend moodle-https-be
-      server svc-moodle-demo 10.10.16.68:30443
+      server svc-moodle-demo www.google.com
