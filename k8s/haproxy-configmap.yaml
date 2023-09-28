@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy-configmap
+data:
+  haproxy.cfg: |
+    # Your HAProxy configuration here
+    global
+      log /dev/log local0
+      log /dev/log local1 notice
+      chroot /var/lib/haproxy
+      stats socket /run/haproxy/admin.sock mode 660 level admin
+      stats timeout 30s
+      user haproxy
+      group haproxy
+      daemon
+    defaults
+      log global
+      mode http
+      option httplog
+      option dontlognull
+      timeout connect 5000
+      timeout client 50000
+      timeout server 50000
+    frontend myfrontend
+      bind *:80
+      default_backend mybackend
+    backend mybackend
+      server server1 192.168.0.1:8080
+      server server2 192.168.0.2:8080
