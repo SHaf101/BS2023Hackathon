@@ -101,4 +101,4 @@ data:
         default_backend timetable-be
       backend timetable-be
         mode http
-        server timetable-srv timetable-app-service.default.svc.cluster.local:80
+        server timetable-srv app-timetable-service.default.svc.cluster.local:80
