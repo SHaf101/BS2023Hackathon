@@ -25,10 +25,15 @@ spec:
         volumeMounts:
         - mountPath: /usr/local/etc/haproxy
           name: haproxycfg
+        - name: ssl-certificate
+          mountPath: /etc/ssl/haproxy
       volumes:
       - name: haproxycfg
         configMap:
           name: haproxy-configmap
+      - name: ssl-certificate
+        secret:
+          secretName: haproxy-tls-secret
       
 ---
 apiVersion: v1
@@ -91,4 +96,9 @@ data:
     #   #server svc-moodle-demo www.google.com
     #   #server svc-moodle-demo haproxy-service.default.svc.cluster.local:30443 check ssl verify none
     #   server svc-moodle-demo 10.10.16.68:30443 check ssl verify none
-    
+      frontend timetable-fe
+        bind moodle.lab.local/timetable:8443 ssl crt /etc/ssl/haproxy/haproxy.pem
+        default_backend timetable-be
+      backend timetable-be
+        mode http
+        server timetable-app-service.default.svc.cluster.local:80
