@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: app-timetable
   labels:
-    app: app
+    app: app-timetable
     type: timetable
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: app-timetable
       type: timetable
   template:
     metadata:
       labels:
-        app: app
+        app: app-timetable
         type: timetable
     spec:
       containers:
@@ -29,7 +29,7 @@ metadata:
   name: app-timetable-service
 spec:
   selector:
-    name: app-timetable
+    app: app-timetable
   ports:
     - protocol: TCP
       nodePort: 30135
