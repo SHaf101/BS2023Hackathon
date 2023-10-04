@@ -1,35 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-issuer
+  name: app-timetable
   labels:
     app: app
-    type: issuer
+    type: timetable
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: app
-      type: issuer
+      type: timetable
   template:
     metadata:
       labels:
         app: app
-        type: issuer
+        type: timetable
     spec:
       containers:
-      - name: app-issuer
-        image: app:issuer
+      - name: app-timetable
+        image: teinerhd/timetable-server:latest
         ports:
         - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-issuer-service
+  name: app-timetable-service
 spec:
   selector:
-    app.kubernetes.io/name: app-issuer
+    name: app-timetable
   ports:
     - protocol: TCP
+      nodePort: 30135
+      port: 80
       targetPort: 80
+  type: NodePort
