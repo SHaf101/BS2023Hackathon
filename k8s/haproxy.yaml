@@ -97,7 +97,7 @@ data:
     #   #server svc-moodle-demo haproxy-service.default.svc.cluster.local:30443 check ssl verify none
     #   server svc-moodle-demo 10.10.16.68:30443 check ssl verify none
       frontend timetable-fe
-        bind moodle.lab.local/timetable:8443 ssl crt /etc/ssl/haproxy/haproxy.pem
+        bind *:8443 ssl crt /etc/ssl/haproxy/haproxy.pem
         default_backend timetable-be
       backend timetable-be
         mode http
